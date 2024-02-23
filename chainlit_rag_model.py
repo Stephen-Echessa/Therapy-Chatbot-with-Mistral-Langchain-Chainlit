@@ -6,13 +6,15 @@ from langchain.docstore.document import Document
 from langchain.prompts import PromptTemplate
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.memory import ConversationTokenBufferMemory
+from langchain.memory import ConversationBufferMemory
 import chainlit as cl
 
 prompt_template = """
    ### [INST]
    Instruction: You are an expert at answering NLP questions.
    Here is context to help: {context}
+   Follow-up Instructions:
+   {chat_history}
    ##QUESTION:
    {question}
    [/INST]
@@ -26,8 +28,8 @@ def set_prompt():
     return prompt
 
 def conversation_chain(llm, prompt, retriever):
-    memory = ConversationTokenBufferMemory(llm=load_llm(), memory_key='chat_history', return_messages=True)
-    chain = ConversationalRetrievalChain.from_llm(llm=load_llm(), 
+    memory = ConversationBufferMemory(llm=llm, memory_key='chat_history', output_key='answer', return_messages=True)
+    chain = ConversationalRetrievalChain.from_llm(llm=llm, 
                                          memory=memory,
                                          retriever=retriever,
                                          combine_docs_chain_kwargs={'prompt': prompt}
