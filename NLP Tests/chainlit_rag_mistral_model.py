@@ -41,7 +41,7 @@ def load_llm():
     return llm
 
 def preprocess_documents():
-    loader = PyPDFLoader('./data/Reading 2 Text Analytics for Beginners using NLTK_240116_161801.pdf')
+    loader = PyPDFLoader('../data/Reading 2 Text Analytics for Beginners using NLTK_240116_161801.pdf')
     data = loader.load()
     text_gen = ''
     for page in data:
@@ -78,7 +78,7 @@ async def start():
     chain = chatbot()
     msg = cl.Message(content='Bot is starting...')
     await msg.send()
-    msg.content = 'Welcome to Siri-Your Therapy Chatbot. How may I help you?'
+    msg.content = 'Welcome... I am a Test NLP Question Answering Chatbot. How may I help you?'
     await msg.update()
     
     cl.user_session.set('chain', chain)
