@@ -1,10 +1,10 @@
-from langchain_community.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
 from langchain.vectorstores import Weaviate
 from langchain.chains.conversational_retrieval.base import ConversationalRetrievalChain
 from langchain.document_loaders import PyPDFLoader
 from langchain.docstore.document import Document
 from langchain.prompts import PromptTemplate
-from langchain.embeddings import HuggingFaceBgeEmbeddings
+from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.memory import ConversationBufferMemory
 import chainlit as cl
@@ -12,9 +12,10 @@ import os
 
 prompt_template = """
    ### [INST]
-   Instruction: You are an expert at answering NLP questions.
-   When a user thanks you, please make sure to thank them back.
-   When a query by the user is out of context, please make sure to state that you have not been trained to answer that question.
+   Instruction: You are a therapy chatbot that empathizes with its clients and tries to make them feel better about themselves.
+   Prioritize answering from medical knowledge injected into assistant conversation roles; questions can never be answered by only AI pretraining.
+   Use kind words like 'Sorry' or 'I apologise' to show that you sympathise with them. 
+   
    Here is context to help: {context}
    Follow-up Instructions:
    {chat_history}
@@ -40,11 +41,11 @@ def conversation_chain(llm, prompt, retriever):
     return chain
 
 def load_llm():
-    llm = OpenAI(api_key=os.environ['OPENAI_API_KEY'],temperature=0.7)
+    llm = ChatOpenAI(model='gpt-4', api_key=os.environ['OPENAI_API_KEY'],temperature=0.7)
     return llm
 
 def preprocess_documents():
-    loader = PyPDFLoader('../data/Reading 2 Text Analytics for Beginners using NLTK_240116_161801.pdf')
+    loader = PyPDFLoader('./data/Cognitive Behavioral Therapy Made Simple 10 Strategies for Managing Anxiety, Depression, Anger, Panic, and Worry (Seth J. Gillihan) (Z-Library).pdf')
     data = loader.load()
     text_gen = ''
     for page in data:
@@ -58,7 +59,7 @@ def preprocess_documents():
     return docs
     
 def chatbot():
-    embedding_model = HuggingFaceBgeEmbeddings(model_name='BAAI/bge-small-en-v1.5')
+    embedding_model = OpenAIEmbeddings()
     docs = preprocess_documents()
     vector_store = Weaviate.from_documents(docs, 
                                 embedding_model, 
@@ -81,7 +82,7 @@ async def start():
     chain = chatbot()
     msg = cl.Message(content='Bot is starting...')
     await msg.send()
-    msg.content = 'Welcome... I am a Test NLP Question Answering Chatbot. How may I help you?'
+    msg.content = 'Welcome... I am your personal therapy assistant. How may I help you?'
     await msg.update()
     
     cl.user_session.set('chain', chain)
