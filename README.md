@@ -1,7 +1,7 @@
 # Therapy Chatbot Assistant
 
-The Therapy Chatbot Assistant is a project aimed at providing personalized therapy support through a conversational interface. Leveraging OpenAI's API and Mistral(local implementation) for natural language processing (NLP), this chatbot utilizes a RAG (Retrieval-Augmented Generation) implementation of Large Language Models (LLMs) for accurate responses.
-I implemted the assistant using Langchain which is a framework that simplifies the creation of applications using large language models.
+The Therapy Chatbot Assistant is a project aimed at providing personalized therapy support through a conversational interface. Leveraging GPT-4 API for natural language processing, this chatbot utilizes a RAG (Retrieval-Augmented Generation) implementation of Large Language Models (LLMs) for accurate responses.
+I implemented the assistant using Langchain which is a framework that simplifies the creation of applications using large language models.
 I also used Chainlit to build a production ready Conversational AI interface.
 
 ## Features
