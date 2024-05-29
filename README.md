@@ -1,7 +1,6 @@
 # Therapy Chatbot Assistant
 
-The Therapy Chatbot Assistant is a project aimed at providing personalized therapy support through a conversational interface. Leveraging GPT-4 API for natural language processing, this chatbot utilizes a RAG (Retrieval-Augmented Generation) implementation of Large Language Models (LLMs) for accurate responses.
-I implemented the assistant using Langchain which is a framework that simplifies the creation of applications using large language models.
+The Therapy Chatbot Assistant is a project aimed at providing personalized therapy support through a conversational interface. Leveraging two models, GPT-4 through its API and Mistral-7B locally for natural language processing, this chatbot utilizes a RAG (Retrieval-Augmented Generation) implementation of Large Language Models (LLMs) for accurate responses.
 I also used Chainlit to build a production ready Conversational AI interface.
 
 ## Features
@@ -25,8 +24,8 @@ I also used Chainlit to build a production ready Conversational AI interface.
     pip install -r requirements.txt
     ```
 
-3. Obtain OpenAI API keys:
-    - Visit [OpenAI API](https://openai.com/api/) to obtain API keys.
+3. Obtain GPT-4 API keys:
+    - Visit (https://openai.com/api/) to obtain API keys.
     - Add the keys to your environment variables or directly to the code.
 
 ## Usage
@@ -40,4 +39,4 @@ I also used Chainlit to build a production ready Conversational AI interface.
 
 ## Testing
 
-The project includes additional folders for testing the OpenAI API and also Mistral as NLP chatbots. Refer to the respective folders and files for testing scripts and results.
+The project includes additional folders for testing the OpenAI API and also Mistral uaing other Pdf files. Refer to the respective folders and files for testing scripts and results.
