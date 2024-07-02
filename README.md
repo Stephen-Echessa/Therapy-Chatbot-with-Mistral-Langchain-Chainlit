@@ -36,7 +36,3 @@ I also used Chainlit to build a production ready Conversational AI interface.
     ```
 
 2. Interact with the chatbot by typing your queries and receiving responses.
-
-## Testing
-
-The project includes additional folders for testing the OpenAI API and also Mistral uaing other Pdf files. Refer to the respective folders and files for testing scripts and results.
