@@ -10,7 +10,7 @@ I also used Chainlit to build a production ready Conversational AI interface.
 
 3.) Results - Folder containing screenshots of implementation of the model on a user interface.
 
-4.) NLP_Tests - Folder containing different model implementations of NLP tasks, some being RAG-Based trained off the NLP dataset.
+4.) NLP_Tests - Folder containing different model implementations of NLP tasks, some being RAG-based trained off the NLP dataset.
 
 5.) therapy_mistral_final_model.py - File containing therapy-based Mistral Model. 
 
